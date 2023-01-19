@@ -1,0 +1,336 @@
+%%%%% INSTRUCTIONS FOR COMPILING THE DOCUMENT %%%%%
+%% Overleaf: just click Recompile.
+%% Terminal:
+%%  1. pdflatex main.tex
+%%  2. makeindex -s main.ist -t main.glg -o main.gls main.glo
+%%  3. biber main
+%%  4. pdflatex main.tex
+%%  5. pdflatex main.tex
+%% Similar sequence of commands is also required
+%% in LaTeX specific editors.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% METADATA %%%%%
+%% Always keep the following metadata up to date!
+%% This is important for your PDF file to comply
+%% to accessibility standards.
+%% (And yes, this information must remain here,
+%% before \documentclass[...]{...}.)
+
+% \Title and \Language are mandatory,
+% others desirable
+% The appropriate Finnish language code is 'fi',
+% UK English is en-UK
+\begin{filecontents*}[overwrite]{\jobname.xmpdata}
+\Title{COMP.CS.220 - Mobiiliohjelmointi 2023 - Oppimispäiväkirja}
+\Author{Ville Nupponen}
+\Language{fi}
+\end{filecontents*}
+
+\pdfminorversion=6
+
+%%%%% PREAMBLE %%%%%
+
+%%%%% Document class declaration.
+% The possible optional arguments are
+%   finnish - thesis in Finnish (default)
+%   english - thesis in English
+%   numeric - citations in numeric style (default)
+%   authoryear - citations in author-year style
+%   apa - citations in APA 7 (available only in English)
+%   ieee - citations in IEEE style (available only in English)
+%   draft - for faster non-final works, also skips images
+%           (recommended, remove in final version)
+%   programs - if you wish to display code snippets
+% Example: \documentclass[english, authoryear]{tauthesis}
+%          thesis in English with author-year citations
+\documentclass[finnish, numeric]{tauthesis}
+
+% The glossaries package throws a warning:
+% No language module detected for 'finnish'.
+% You can safely ignore this. All other
+% warnings should be taken care of!
+
+%%%%% Your packages.
+% Before adding packages, see if they can be found
+% in tauthesis.cls already. If you're not sure that
+% you need a certain package, don't include it in
+% the document! This can dramatically reduce
+% compilation time.
+
+% Graphs
+% \usepackage{pgfplots}
+% \pgfplotsset{compat=1.15}
+
+% Subfigures and wrapping text
+% \usepackage{subcaption}
+
+% Mathematics packages
+\usepackage{amsmath, amssymb, amsthm}
+%\usepackage{bm}
+
+% Chemistry packages
+% \usepackage{chemfig}
+% \usepackage[version=4]{mhchem}
+
+% Text hyperlinking
+% \usepackage{hyperref}
+% \hypersetup{hidelinks}
+
+% (SI) unit handling
+% \usepackage{siunitx}
+
+%\sisetup{
+%    detect-all,
+%    math-sf=\mathrm,
+%    exponent-product=\cdot,
+%    output-decimal-marker={,} % for theses in FINNISH!
+%}
+
+\usepackage{listings}
+
+%%%%% Your commands.
+
+% Print verbatim LaTeX commands
+\newcommand{\verbcommand}[1]{\texttt{\textbackslash #1}}
+
+% Basic theorems in Finnish and in English.
+% Remove [chapter] if you wish a simply
+% running enumeration.
+% \newtheorem{lause}{Lause}[chapter]
+% \newtheorem{theorem}[lause]{Theorem}
+
+% \newtheorem{apulause}[lause]{Apulause}
+% \newtheorem{lemma}[lause]{Lemma}
+
+% Use these versions for individually
+% enumerated lemmas
+% \newtheorem{apulause}{Apulause}[chapter]
+% \newtheorem{lemma}{Lemma}[chapter]
+
+% Definition style
+% \theoremstyle{definition}
+% \newtheorem{maaritelma}{Määritelmä}[chapter]
+% \newtheorem{definition}[maaritelma]{Definition}
+% examples in this style
+
+%%%%% Glossary information.
+
+% Use the following lines ONLY if you need more
+% than one glossary. The first argument specifies
+% a type label for the glossary and the second
+% the displayed name.
+% \newglossary*{symbs}{Symbols}
+% \newglossary{label}{Displayed name}
+% ...
+
+\makeglossaries
+
+% Use this line if using the default glossary.
+% Otherwise comment out.
+\loadglsentries[main]{tex/sanasto.tex}
+
+% Use this line if using more than one glossary.
+% Otherwise comment out.
+% \loadglsentries[symbs]{tex/sanasto2.tex}
+
+%%%%% Citation information.
+
+% Commonly used bibliography modifications.
+% Feel free to play around with them.
+
+%\ExecuteBibliographyOptions{%
+%sorting=none,
+%maxbibnames=99,
+%maxcitenames=2,
+%giveninits=true,
+%uniquename=init,
+%sortcites,
+%sortlocale=fin}
+
+%\DefineBibliographyStrings{finnish}{%
+%    in = {},
+%    pages = {s.},
+%    page = {s.}
+%}
+%\DefineBibliographyStrings{english}{%
+%    in = {},
+%    pages = {pp.},
+%    page = {p.}
+%}
+%
+%\DeclareNameAlias{sortname}{last-first}
+%\DeclareNameAlias{author}{last-first}
+
+%\DeclareFieldFormat[%
+%    article,inbook,incollection,inproceedings,
+%    patent,thesis,unpublished]{citetitle}{#1\isdot}
+%\DeclareFieldFormat[%
+%    article,inbook,incollection,inproceedings,
+%    patent,thesis,unpublished]{title}{#1\isdot}
+%\DeclareFieldFormat{pagetotal}{#1 \bibstring{page}}
+
+%\AtBeginBibliography{\renewcommand*{\makelabel}[1]{#1\hss}}
+
+%\DefineBibliographyExtras{english}{\let\finalandcomma=\empty}
+
+\addbibresource{tex/references.bib}
+
+\begin{document}
+
+%%%%% FRONT MATTER %%%%%
+
+\frontmatter
+
+%%%%% Thesis information and title page.
+
+% The titles of the work. If there is no subtitle,
+% leave the arguments empty. Pass the title in
+% the primary language as the first argument
+% and its translation to the secondary language
+% as the second.
+\title{Oppimispäiväkirja}
+
+\subtitle{COMP.CS.220 - Mobiiliohjelmointi 2023}
+
+% The author name.
+\author{Ville Nupponen}
+
+% The examiner information.
+% If your work has multiple examiners, replace with
+% \examiner[<label>]{<name> \\ <name>}
+% where <label> is an appropriate (plural) label,
+% e.g. Examiners or Tarkastajat, and <name>s are
+% replaced by the examiner names, each on their
+% separate line.
+% \examiner[Tarkastajat]{XXX XXXXX}
+
+% The finishing date of the thesis (YYYY-MM-DD).
+% TODO:
+\finishdate{2023}{00}{00}
+
+% The type of the thesis (e.g. Kandidaatintyö
+% or Master of Science Thesis) in the primary
+% and the secondary languages of the thesis.
+\thesistype{Oppimispäiväkirja}{Learning diary}
+
+% The faculty and degree programme names in
+% the primary and the secondary languages of
+% the thesis.
+\facultyname{Informaatioteknologian ja viestinnän tiedekunta}{Faculty of Information Technology and Communication Sciences}
+\programmename{Tietotekniikka}{Computing Sciences}
+
+% The keywords to the thesis in the primary and
+% the secondary languages of the thesis
+\keywords%
+    {Mobiiliohjelmointi, Android}
+
+\maketitle
+
+%%%%% Abstracts and preface.
+
+% Write the abstract(s) and the preface
+% into a separate file for the sake of clarity.
+% Pass the appropriate file name as the first
+% argument to these commands. Put the \abstract
+% in the primary language first and the
+% \otherabstract in the secondary language second.
+% Those who do not speak Finnish only need the
+% first abstract. The second argument of
+% the \preface command takes the place where
+% the thesis was signed in.
+\abstract{tex/tiivistelma.tex}
+% \otherabstract{tex/abstract.tex}
+% \preface{tex/alkusanat.tex}{Tampereella}
+
+%%%%% Table of contents.
+
+\tableofcontents
+
+%%%%% Lists of figures, tables, listings and terms.
+
+% Print the lists of figures and/or tables.
+% Uncomment either of these commands as required.
+% Both are optional, but if there are many important
+% figures/tables, listing them may be a good idea.
+
+% \listoffigures
+% \listoftables
+% \lstlistoflistings
+
+% Misc stuff related to how the glossary is displayed.
+% You can especially tweak the lengths to suit you!
+\glsaddall
+\setglossarystyle{taulong}
+\setlength{\glsnamewidth}{0.25\textwidth}
+\setlength{\glsdescwidth}{0.75\textwidth}
+\renewcommand*{\glsgroupskip}{}
+
+% Print the default glossary of abbreviations,
+% if necessary. Otherwise comment out.
+% The appropriate Finnish variant is 'Lyhenteet'
+\printglossary[title={Lyhenteet ja merkinnät}]
+
+% Print more than one glossary with these lines.
+% Otherwise comment out.
+% \printglossary[type=symbs]
+% \printglossary[type=label]
+% ...
+
+%%%%% MAIN MATTER %%%%%
+
+\mainmatter
+
+% Write each of the chapters of the thesis
+% into a separate file for the sake of clarity.
+% They can be \input as shown below. Give both
+% the chapters and their files as descriptive
+% names as possible.
+\chapter{JOHDANTO}
+\label{ch:johdanto}
+\input{tex/johdanto.tex}
+
+\chapter{ALOITUS}
+\label{ch:aloitus}
+\input{tex/aloitus.tex}
+
+\chapter{OPISKELU}
+\label{ch:opiskelu}
+\input{tex/opiskelu.tex}
+
+\chapter{HARJOITUSTEHTÄVÄT}
+\label{ch:harjoitustehtavat}
+\input{tex/harjoitustehtavat.tex}
+
+\chapter{PROJEKTI}
+\label{ch:projekti}
+\input{tex/projekti.tex}
+
+\chapter{YHTEENVETO}
+\label{ch:yhteenveto}
+\input{tex/yhteenveto.tex}
+
+%%%%% Bibliography/references.
+
+% Print the bibliography according to the
+% information in ./tex/references.bib and
+% the in-line citations used in the body of
+% the thesis.
+% \emergencystretch=2em
+\printbibliography[heading=bibintoc]
+
+%%%%% Appendices.
+
+% Use only if it clarifies the structure of
+% the document. Remember to introduce each
+% appendix and its content.
+
+\begin{appendices}
+
+\chapter{Esimerkki liite}
+\label{ch:example-appendix}
+\input{./tex/example-appendix.tex}
+
+\end{appendices}
+
+\end{document}
