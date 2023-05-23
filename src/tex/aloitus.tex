@@ -277,3 +277,62 @@ Kun muutokset commitataan ja pushataan, käynnistyy automaattisesti workflow,
 joka on nähtävissä Githubissa repositoryn Actions-välilehdessä. Noin 2 minuutin
 odottamisen jälkeen työ valmistuu ja ja artifakteista löytyy PDF.zip tiedosto
 ladattavaksi, jonka sisältä löytyy generoitu main.pdf-tiedosto.
+
+\subsection{Run-configuraatio Jetbrains Fleetiin}
+
+Jetbrains Fleetiin on mahdollista määritellä Run Configuration, jonka avulla
+voisi olla helpomi ajaa kuin pitää auki erillistä terminaalia, josta ajaa
+komento aina eriskeen. Kuitenkaan tämän määritys ei lähtenyt toimimaan niin
+yksinkertaisesti kuin olisi voinut toivoa, joten liian ajan käyttäminen ei
+ole kannattavaa näin pienen asian suhteem.
+
+\section{Android Studion asennus}
+
+Jetbrainsin tuotteiden ollessa ennestään tuttuja ja aktiivisessa käytössä, on
+käytössä myös Jetbrains Toolbox, joka mahdollistaa Jetbrainsin IDE:jen
+asentamisen vaivatta. Tämän avulla onnistuu myös Android Studion asentaminen
+yhdellä klikkaukselle.
+
+Asennuksen yhteydessä ilmenee ongelma HAXM:n asentamisessa:
+
+\begin{displayquote}
+Intel® HAXM installation failed. To install Intel® HAXM follow the instructions found at: https://github.com/intel/haxm/wiki/Installation-Instructions-on-Windows
+\end{displayquote}
+
+Ongelma vaikuttaisi johtuvan Windowsin ytimen eristyksestä ja korjaantuisi se
+pois kytkemällä \parencite{GithubIntelHaxmIssue412}. Kuitenkaan KAXM:n ollessa
+vain parannus emulaattorin suorituskykyyn, ei ytimen eristyksen kytkeminen pois
+päältä ole välttämättä kannattavaa.
+
+Ensimmäisellä yrittämällä vaikuttaisi ettei projektin luonti toimi WSL:n
+sisälle. Tähän tarkempaa perehtymistä harjoitus 3:n yhteydessä.
+
+\section{Tuntikirjanpito}
+
+Kurssin edetessä kirjaan tunnit niihin asioihin mihin kyseisestä asiasta
+kirjoitettu teksti sisältyy oppimispäiväkirjassa. Lopullinen yhteenveto eri
+osioiden yhteenlasketusta tuntikirjanpidosta löytyy yhteenvedosta.
+
+Alla olevaan taulukkoon on kirjattu aloitukseen käytetyt tunnit. Näiden lisäksi
+taulukkoon on laitettu ne tunnit, joissa on selvästi keskitytty
+oppimispäiväkirjan tekemiseen niiltä osilta kun oppimispäiväkirjaa ei ole tehty
+sujuvasti muun tekemisen ohessa tai on vaatinut asioiden siistiksi
+kirjoittamista.
+
+Käytetty aika on kirjattu 5min tarkkuudella. Tämä lähinnä, koska samaa käytäntöä
+käyttää töissä ja helpoittaa hahmottamaan mitä asioita tehnyt ja milloin.
+
+\begin{table}[H]
+  \centering
+  \label{tab:other-studing-working-hours}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}} l c c c r }
+    \textbf{Tekeminen} & \textbf{Päivämäärä} & \textbf{Aloitettu} & \textbf{Lopetettu} & \textbf{Määrä} \\
+    \hline
+    Versionhallinnan alustus          & 19.01.2023 &     - &     - & 1h 00m \\
+    Oppimispäiväkirjan alustus        & 19.01.2023 &     - &     - & 2h 00m \\
+    Oppimispäiväkirjan kirjoittaminen & 20.01.2023 &     - &     - & 3h 00m \\
+    Oppimispäiväkirjan kirjoittaminen & 23.05.2023 & 08:30 & 12:05 & 3h 35m \\
+    \hline
+    \multicolumn{4}{l}{\textbf{Yhteensä}} & \textbf{9h 30m} \\
+  \end{tabular*}
+\end{table}
