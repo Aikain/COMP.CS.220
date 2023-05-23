@@ -1,1 +1,412 @@
+% TODO START
+
 Tähän tulee tietoa miten kurssin asioita opiskeltiin kurssin edetessä yms.
+
+\section{Ohjelmointikielet}
+
+\subsection{Java}
+
+\subsection{Kotlin}
+
+* https://kotlinlang.org/
+
+Miksi?
+
+* Kiinnostaa opetella
+
+* Jetbrains
+
+* Onko parempi kuin java vai vaan mielipide?
+
+* multiplatform?
+
+* google suosittelee?
+
+Muuta:
+
+* https://developer.android.com/kotlin/style-guide
+
+% TODO END
+
+\section{Kurssit}
+
+Ensimmäisenä etsiessä mahdollisia MOOC:eja tai muita vastaavia ratkaisuja
+opiskelun tueksi päätyy suoraan Android:n sivuille
+\parencite{AndroidDevelopersTrainingCourses} selaamaan kursseja.
+Mobiiliohjelmointi-kurssin alkupuolella 25.01.2023 sivulla oli tarjolla kaksi
+kurssia ''New! Android Basics with Compose''
+\parencite{AndroidDevelopersAndroidBasicsInKotlin} ja ''Android Basics in
+Kotlin'' \parencite{AndroidDevelopersAndroidBasicsWithCompose}, kuten
+WaybackMachinen
+\parencite{AndroidDevelopersTrainingCoursesWaybackMachine202301} avulla
+saadusta kuvasta
+\ref{fig:android-developers-training-courses-2023-01-24-wayback-machine}
+nähdään. Näistä ensimmäisessä kuitenkin lukee kurssin olevan vielä työnalla,
+joten tämä tekee valinnasta sinääli yksinkertaisen kun tarkkaa aikataulua
+ensimmäisen kurssin valmistumiselle ei ole.
+
+\begin{figure}[h!]
+  \includegraphics[width=\textwidth]{figures/android-developers-training-courses-2023-01-24-wayback-machine.png}
+  \caption{Kuvankaappaus Android Developers sivun tarjolla olevista kursseista 24.01.2023}
+  \label{fig:android-developers-training-courses-2023-01-24-wayback-machine}
+\end{figure}
+
+Osittaiseksi epäonneksi ja huonon muistin ansiosta ei tullut kertaakaan
+tarkistettua toisen kurssin tilaa vaan tein tuon aloitetun kurssin loppuun
+asti. Kun kurssi tuli tehtyä loppun asti, lähdin katselemaan onko jotain muita
+kursseja joita voisi vielä olla hyvä tehdä. Tällöin huomaan muutoksen, joka on
+tapahtunut noissa kursseissa. Wayback Machinen perusteella muutos on tapahtunut
+helmi-maaliskuun vaihteessa
+\parencite{AndroidDevelopersTrainingCoursesWaybackMachine202302}
+\parencite{AndroidDevelopersTrainingCoursesWaybackMachine202303}. Muutoksen
+myötä ''Android Basics with Compose''-kurssi ei ole enää keskeneräinen ja
+kirjoitushetkellä kyseinen kurssi onkin jopa suositeltu kurssi, kuten
+kuvankaappauksesta \ref{fig:android-developers-training-courses-2023-05-23}
+nähdään.
+
+\begin{figure}[h!]
+  \includegraphics[width=\textwidth]{figures/android-developers-training-courses-2023-05-23.png}
+  \caption{Kuvankaappaus Android Developers sivun tarjolla olevista kursseista 24.01.2023}
+  \label{fig:android-developers-training-courses-2023-05-23}
+\end{figure}
+
+''Android Basics in Kotlin''-kurssin yhteydessä on useamman kerran törmännyt
+vanhentuneisiin riippuvuuksiin tai deprekoituneisiin asioihin, joten uudempi
+kurssi tuntuu sen puolesta houkuttevalta. Lisäksi kurssilla vaikuttaisi olevan
+uuttakin asiaa verrattuna edelliseen kurssiin; nimittäin Compose. Käyn läpi
+kurssin ensimmäisen osion pitkälti hypäten jo tietämieni asioiden yli, mutta
+käymällä kuitenkin huolella läpi kaikki uudet asiat. Ensimmäisen osion pohjalta
+päätän tehdä kyseisen kurssin myös kokonaan päällekkäisyyksistä huolimatta.
+
+\subsection{Android Basics in Kotlin -kurssi}
+
+Seuraavissa luvuissa on käyty läpi ''Android Basics in Kotlin''-kurssin
+tekemistä.
+
+Kurssi käy läpi Kotlinin ja Androidin perusteet. Kurssilla käytetään UI:n
+tekemiseen Views:ejä. Lähtövaatimuksissa kurssille ei juurikaan ole vaan
+ohjelmointikin opetetaan alusta alkaen.
+
+\subsubsection{25.01.2023}
+
+% TODO START
+
+Unit-1 https://developer.android.com/courses/android-basics-kotlin/unit-1
+
+\subsubsection{26.01.2023}
+
+Unit-2 https://developer.android.com/courses/android-basics-kotlin/unit-2
+
+* Joidenkin asioiden muistaminen hidastaa, esim. android:textAppearance=''?attr/textAppearanceHeadline6''
+* Riippuvuudet liian vanhoja -> pitää päivittää -> aiheutuuu uusia ongelmia
+* Moni asioista korjaantuu ajamalla uusiksi
+* https://github.com/android/android-test/issues/1589\#issuecomment-1316971699
+
+Unit-3 https://developer.android.com/courses/android-basics-kotlin/unit-3
+
+* Android Studiolla saa kätevästi lisätty iconeita
+
+Lopetettu ekan osan loppuun
+
+\subsubsection{12.05.2023}
+
+Jatkettu unit 3, toinen osa
+
+* Android Studio tarjoaa helposti riippuvuuksien yms. päivittämistä
+  * Tästä aiheutuu kuitenkin liian ongelma jos liian tarkasti seuraa ohjeita
+%  * https://developer.android.com/jetpack/androidx/releases/lifecycle#2.6.0-alpha05
+  > Transformations is now written in Kotlin. This is a source incompatible change for those classes written in Kotlin that were directly using syntax such as Transformations.map - Kotlin code must now use the Kotlin extension method syntax that was previously only available when using lifecycle-livedata-ktx. When using the Java programming language, the versions of these methods that take an androidx.arch.core.util.Function method are deprecated and replaced with the versions that take a Kotlin Function1. This change maintains binary compatibility. (I8e14f)
+
+\subsubsection{13.05.2023}
+
+* tools:text <-- kätevä devatessa, mutta tän olemassa olon unohtaa jos ei näe sitä esimerkeissä
+
+\begin{lstlisting}[
+  basicstyle=\small,
+  label={lst:TODO},
+  language=Kotlin,
+]
+private val _price = MutableLiveData<Double>()
+val price: LiveData<String> = Transformations.map(_price) {
+  NumberFormat.getCurrencyInstance().format(it)
+}
+\end{lstlisting}
+
+vs
+
+\begin{lstlisting}[
+  basicstyle=\small,
+  label={lst:TODO},
+  language=Kotlin,
+]
+private val _price = MutableLiveData<Double>()
+val price: LiveData<String> = _price.map {
+  NumberFormat.getCurrencyInstance().format(it)
+}
+\end{lstlisting}
+
+* testImplementation vs androidTestImplementation
+* https://stackoverflow.com/a/48951686/8380119
+
+* https://github.com/google-developer-training/android-basics-kotlin-cupcake-app/issues/87
+
+* https://github.com/google-developer-training/basic-android-kotlin-training-sports/pull/6
+
+* Resizable emulator: https://developer.android.com/studio/run/resizable-emulator
+* Vaihto unfolded foltable -> tablet erittäin hidas
+
+Viimeisessä projektissa ''ongelmat'':
+* Unohtu miten tehdä: android:text=''@\{@string/subtotal(viewModel.subtotal)\}''
+  * https://stackoverflow.com/a/39354769/8380119
+* Unohtu miten tehdä: findNavController\(\).navigate\(R.id.action_accompanimentMenuFragment_to_checkoutFragment\)
+
+* https://github.com/google-developer-training/android-basics-kotlin-lunch-tray-app/pull/6
+* https://github.com/google-developer-training/android-basics-kotlin-lunch-tray-app/pull/31
+* https://github.com/google-developer-training/android-basics-kotlin-lunch-tray-app/pull/43
+
+* https://stackoverflow.com/a/74955089/8380119
+* androidx.fragment:fragment-testing 1.5.0 -> 1.6.0-rc01
+
+* Virheet koodissa:
+  * Yritin olla käyttämättä ''!!''
+    * mutable valuen increase yms. pakottaa käyttää ''!!''?
+
+\begin{lstlisting}[
+  basicstyle=\small,
+  label={lst:TODO},
+  language=Kotlin,
+]
+if (_subtotal.value != null)
+  _subtotal.value = _subtotal.value!! - previousAccompanimentPrice
+\end{lstlisting}
+
+  * alustin \_subtotal ja \_total null:lla sen sijaan, että 0.0:lla niin aiheutti nullpointerexceptionii
+  * yhteenvetonäkymässä pelkät hinnat eikä koko tekstejä eli ''$6.50'' kun piti olla ''Subtotal: $6.50''
+
+Unit-4 https://developer.android.com/courses/android-basics-kotlin/unit-4
+
+\subsubsection{14.05.2023}
+
+Unit-5 https://developer.android.com/courses/android-basics-kotlin/unit-5
+
+- perus SQL -> menee lähimmä läpi kahlaamiseksi ettei ole mitään android specifiä tms.
+- https://github.com/google-developer-training/android-basics-kotlin-bus-schedule-app/issues/76, tosin ohjeessa olikin maininta:
+// submitList() is a call that accesses the database. To prevent the
+// call from potentially locking the UI, you should use a
+// coroutine scope to launch the function. Using GlobalScope is not
+// best practice, and in the next step we'll see how to improve this.
+
+\subsubsection{20.05.2023}
+
+- Kotlin extension functionit hämmentää, mutta nyt tekee järkeä aiemmin ihmetelty asia; piti importtaa, jotta tulee funktio käyttöön
+  -> Selittää myös miten .isNullOrEmpty() toimii
+- Kotlin lambdoissa ei tartte sulkeita niin useampi rivinen näyttää ennemmin siltä, että toinen rivi olisi parametri tjs. Esim. js: test((a) -> teeJotain(a), 1000)
+
+* Project: Forage app:
+  * https://stackoverflow.com/questions/55974539/viewmodelscope-launchdispatchers-io-purpose
+  * https://github.com/google-developer-training/android-basics-kotlin-forage-app/issues/11
+
+Unit-6 https://developer.android.com/courses/android-basics-kotlin/unit-6
+
+* Android Studiosta löytyy ''Device File Explorer''
+* Notifikaatioiden näyttäminen vaatii luvan kysymisen uusimmilla..
+
+KOKONAAN VALMIS!
+
+% TODO END
+
+\subsubsection{Tuntikirjanpito}
+
+Ohjeisessa taulukossa on kirjattu ''Android Bascis in Kotlin''-kurssiin käytetyt tunnit.
+
+\begin{table}[H]
+  \centering
+  \label{tab:android-basics-in-kotlin-working-hours}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}} l c c c r }
+    \textbf{Osio} & \textbf{Päivämäärä} & \textbf{Aloitettu} & \textbf{Lopetettu} & \textbf{Määrä} \\
+    \hline
+    Unit-1 & 25.01.2023 & 08:10 & 10:40 & 2h 30m \\
+    Unit-1 & 25.01.2023 & 11:45 & 14:40 & 2h 55m \\
+    Unit-2 & 26.01.2023 & 01:45 & 07:00 & 5h 15m \\
+    Unit-2 & 26.01.2023 & 07:50 & 09:50 & 2h 00m \\
+    Unit-3 & 26.01.2023 & 09:50 & 11:25 & 1h 35m \\
+    Unit-3 & 26.01.2023 & 11:55 & 12:55 & 1h 00m \\
+    Unit-3 & 12.05.2023 & 11:40 & 15:30 & 3h 50m \\
+    Unit-3 & 12.05.2023 & 16:15 & 17:45 & 1h 30m \\
+    Unit-3 & 13.05.2023 & 14:15 & 20:25 & 6h 10m \\
+    Unit-4 & 13.05.2023 & 20:25 & 21:05 &    40m \\
+    Unit-4 & 14.05.2023 & 15:30 & 16:00 &    30m \\
+    Unit-4 & 14.05.2023 & 20:30 & 22:20 & 1h 50m \\
+    Unit-5 & 14.05.2023 & 23:10 & 00:50 & 1h 40m \\
+    Unit-5 & 20.05.2023 & 06:20 & 08:05 & 1h 45m \\
+    Unit-5 & 20.05.2023 & 08:45 & 10:20 & 1h 35m \\
+    Unit-6 & 20.05.2023 & 10:20 & 13:00 & 2h 40m \\
+    \hline
+    \multicolumn{4}{l}{\textbf{Yhteensä}} & \textbf{36h 25m} \\
+  \end{tabular*}
+\end{table}
+
+\subsection{Android Basics with Compose -kurssi}
+
+
+\subsubsection{20.05.2023}
+
+% TODO START
+
+Unit-1
+
+* Unit on paluu arvo kun mitään ei palauteta (void)
+* Kotlin tukee ''Tekstiä: \$muuttuja''
+* Row/Column huomattavasti mukavamman oloisia kun vastaavia kuin flex boxit css:ssä. match\_parentn, startOf.. yms. ollut aina vähän mystisiä tai vähintääkin unohtuu aina miten ne meni
+
+\subsubsection{21.05.2023}
+
+Unit-2
+
+* when tukee myös `in 1..10` ja `is Int`:
+
+\begin{lstlisting}[
+  basicstyle=\small,
+  label={lst:TODO},
+  language=Kotlin,
+]
+when (x) {
+    2, 3, 5, 7 -> println(''x is a prime number between 1 and 10.'')
+    in 1..10 -> println(''x is a number between 1 and 10, but not a prime number.'')
+    is Int -> println(''x is an integer number, but not between 1 and 10.'')
+    else -> println(''x isn't a prime number between 1 and 10.'')
+}
+\end{lstlisting}
+
+* Elvis operaatio (`?:`) kätevä, pitää vaan muistaa, että se on olemassa
+* Kotilinissa ei tarveita `new` kun luodaan instanssi luokasta
+* Getterin ja Setterin voi ylikirjoittaa `get()` ja `set()` avulla
+  * Mahdollistaa mm. sen että olio.numero++ ei voi kasvaa liian suureksi yms.
+
+\begin{lstlisting}[
+  basicstyle=\small,
+  label={lst:TODO},
+  language=Kotlin,
+]
+class Test() {
+    var i = 2
+        set(value) {
+            if (value >= 0)
+                field = value
+        }
+}
+
+fun main() {
+    val test = Test()
+    test.i--
+    test.i--
+    test.i--
+    test.i--
+    println(test.i)  // 0
+}
+\end{lstlisting}
+
+* Setterin sisällä pitää käyttää `field`! Jos yrittää asettaa muuttujan nimen uudelleen (esimerkissä `i`) niin aiheuttaa vaan ikiluupin kun se kutsuu setteria uudelleen
+* Setteristä voi tehdä privaten
+
+\begin{lstlisting}[
+  basicstyle=\small,
+  label={lst:TODO},
+  language=Kotlin,
+]
+var deviceTurnOnCount = 0
+    private set
+\end{lstlisting}
+
+* funktioon voi viitata `::funktionNimi`
+* lamdalla toki ei tartte vitata erikseen
+* Lyhyempi keino tehdä luuppi n kertaa: repeat(4) { println(''asdf'') }
+* Layout Inspector on juttu
+
+Unit-3
+
+* Singletonin saa tehtyä `object Example { ... }`. Luokan sisälle laittaessa `companion object Example { ... }`, jonka jälkeen object sisällä olevia ominaisuuksia voi kutsua suoraan `Luokka.ominaisuus`.
+* Theia?? :D
+* println(solarSystem.contains(''Pluto'')), println(''Future Moon'' in solarSystem)
+* reduce() aloittaa ekasta kun fold():lle annetaan initial value!
+* https://hyperskill.org/tracks
+* Foreground + background riittää, että Android Studiolla saa generoitua kaikki tarvittavat laucher imaget
+
+Unit-4
+
+* Resizable emulator alko toimii kun loi uuden??
+
+\subsubsection{22.05.2023}
+
+Unit-5
+
+Unit-6
+
+Unit-7
+
+* Background Task Inspector on juttu
+
+Unit-8
+
+% TODO END
+
+\subsubsection{Tuntikirjanpito}
+
+Ohjeisessa taulukossa on kirjattu ''Android Bascis with Compose''-kurssiin käytetyt tunnit.
+
+\begin{table}[H]
+  \centering
+  \label{tab:android-basics-with-compose-working-hours}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}} l c c c r }
+    \textbf{Osio} & \textbf{Päivämäärä} & \textbf{Aloitettu} & \textbf{Lopetettu} & \textbf{Määrä} \\
+    \hline
+    Unit-1 & 20.05.2023 & 13:00 & 14:40 & 1h 40m \\
+    Unit-2 & 21.05.2023 & 01:55 & 04:40 & 2h 45m \\
+    Unit-3 & 21.05.2023 & 04:40 & 08:35 & 3h 55m \\
+    Unit-4 & 21.05.2023 & 08:55 & 14:25 & 4h 30m \\
+    Unit-5 & 22.05.2023 & 08:40 & 10:20 & 1h 40m \\
+    Unit-6 & 22.05.2023 & 10:20 & 11:10 &    50m \\
+    Unit-7 & 22.05.2023 & 11:10 & 11:40 &    30m \\
+    Unit-8 & 22.05.2023 & 11:50 & 12:45 &    55m \\
+    \hline
+    \multicolumn{4}{l}{\textbf{Yhteensä}} & \textbf{16h 45m} \\
+  \end{tabular*}
+\end{table}
+
+
+\section{Muuta}
+
+Projektin varrella on tullut perehdyttyä yksittäisiin pieniin asioihin, jotka
+on esitelty seuraavana.
+
+\subsubsection{Kuvien generointi AI-työkaluilla}
+
+% TODO START
+
+* Tutkittu kuvien generoimista
+* Wall-E:ta kokeiltu aiemmin, jotenkin ei tyytyväinen sen tuloksiin
+* Midjourney liian suotittu, että voisi ilmais versio edes kokeilla tällä hetkellä
+* https://stablediffusionweb.com/ ei oikein antanut mitään, mutta Dreamstudion kautta sai hyviä tuloksia
+
+* Hankala saada uusista kuvista tyyliltään samanlaisia kuin ekasta
+* Varsinkin jos haluaa muuttaa muuten kuvaa paljon (poistaa hatun, eriväriset hiukset, vaatteet, vaihtaa sukupuolen piirteitä yms.)
+* Tausta lähtee helposti pois: https://removal.ai/
+
+% TODO END
+
+\subsubsection{Tuntikirjanpito}
+
+Ohjeisessa taulukossa on kirjattu muihin opiskelu-luvussa esiteltyihin asioihin käytetyt tunnit.
+
+\begin{table}[H]
+  \centering
+  \label{tab:other-studing-working-hours}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}} l c c c r }
+    \textbf{Tekeminen} & \textbf{Päivämäärä} & \textbf{Aloitettu} & \textbf{Lopetettu} & \textbf{Määrä} \\
+    \hline
+    Kuvien generointi AI:n avulla & 12.05.2023 & 18:35 & 20:00 & 1h 25m \\
+    Kuvien generointi AI:n avulla & 12.05.2023 & 20:25 & 22:45 & 2h 20m \\
+    \hline
+    \multicolumn{4}{l}{\textbf{Yhteensä}} & \textbf{3h 45m} \\
+  \end{tabular*}
+\end{table}
