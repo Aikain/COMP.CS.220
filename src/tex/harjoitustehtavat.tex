@@ -153,6 +153,79 @@ projektille merkittäviä asioita ei pitäisi olla IDEn configuraatiossa, jotta
 muunmuassa CI/CD toimii ongelmitta kun lähtökohtaisesti ne eivät ole tietoisia
 IDEn confeista.
 
+\section{Harjoitus 4}
+
+Tarkoitus painottaa Kotlinilla tekemistä ja tehdä varsinkin projekti
+Kotlinilla, joten tässäkin valittu pienempi eli harjoitus 4 javalla tehtäväksi
+ja suurempi eli harjoitus 5 Kotlinilla tehtäväksi.
+
+Painotus opiskelussa on ollut Composessa, jota puolestaan ei voi käyttää Javan
+kanssa \parencite{StackoverflowComposeInJava}, joten alkuun pääseminen vaatii
+muutaman minuutin mietintä tauon, mutta onneksi Android Studio alustaa
+valmiiksi uuden projektin luonnin yhteydessä tarvittavat asiat.
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \includegraphics[width=0.4\textwidth]{figures/exercise-4-attributes.png}
+    \caption{Kuvankaappaus Android Studio Design-työkalun attribuuteista}
+    \label{fig:exercise-4-attributes}
+\end{wrapfigure}
+
+Design-työkalun avulla saa lisättyä helposti tarvittavat osat, mutta jotenkin
+graaffisen käyttöliittymän kautta kuvassa \ref{fig:exercise-4-attributes}
+näkyvien tietojen täyttäminen ei suju, joten aika vaihtaa Split-tilaan ja
+muokata XML:ää suoraan. Tämä sujuukin suoraan helpommin ja jopa yleensä
+päänvaivaa aiheuttavat app:layout\_constraintX\_toXOf -asetukset menevät
+sujuvasti tällä kertaa.
+
+Aluksi lisään kentät suoraan valmiina olevaan ConstraintLayout:in alle, mutta
+tästä aiheutuu se etteivät ne ole nätisti tasattuna yhteen riviin vaan
+painikkeen ollessa korkeampi on sen keskikohta selvästi alempana kuin muilla.
+Tämän voisi sinääli korjata vain nopeasti marginilla, joka tuntuu huonolta
+ratkaisulta. Hetken pohdinnan jälkeen saankin laitettua toisen
+ConstraintLayout:in, jonka korkeus on vain sisällön verran ja saan sisällön
+keskitettyä pystysuunnassa kyseisen komponentin suhteen. Hiukan paddingia
+ConstraintLayout:lle ja numerokentille leveydet niin saadaan siististi yhteen
+riviin tasaisin välein kuvan \ref{fig:exercise-4-constraint-layout} mukaisesti.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/exercise-4-constraint-layout.png}
+    \caption{Kuvankaappaus komponenttien sijoittelusta}
+    \label{fig:exercise-4-constraint-layout}
+\end{figure}
+
+UI:n tultua valmiiksi viewBinding-ominaisuuden enablointi ja sen jälkeen
+saadaankin helposti lisättyä painikkeelle onClickListener, joka ottaa kentistä
+luvut ja laskee ne yhteen ja laittaa tulos-kenttään.
+
+\begin{wrapfigure}{rl}{0.3\textwidth}
+    \includegraphics[width=0.3\textwidth]{figures/exercise-4-final.png}
+    \caption{Kuvankaappaus lopullisesta sovelluksesta puhelimessa}
+    \label{fig:exercise-4-final}
+\end{wrapfigure}
+
+Lopulta emulaattorissa toimisen jälkeen vielä hyvä hetki kokeilla, että toimii
+sujuvasti puhelimellakin kuten kuvassa \ref{fig:exercise-4-final} näkyy.
+
+Android Studio auttaa vielä nopeasti poistamaan tekstien kovakoodaukset ja
+käyttämään strings-resursseja. Parannettavaa näinkin piennessä sovelluksessa
+olisi vielä mm. saavutettavuuden suhteen sekä automaattisten testien
+tekemisessä. Toki parannettavaa löytyy aina, joten jätetään sovellus tämän
+harjoituksen osalta tähän.
+
+\tipbox{
+\textbf{Miksi packagen nimen alkuun in.aika?}
+
+Harjoituksissa ja projekteissa esiintyy in.aika-verkkotunnusta. Tämä voi
+vaikuttaa hiukan oudolta aluksi, että käytössä Intialainen verkkotunnus. Tähän
+on kuitenkin yksinkertainen selitys. Olen pitkään käyttänyt nimimerkkiä
+"Aikain" ja kuten jokaisella ''IT-nörtillä'' niin pitäähän minullakin olla
+omaverkkotunnus (tai tänä päivänä niitä on jo useita..). Harmikseni aikain.fi
+oli varattu, mutta aika.in-verkkotunnus puolestaan oli juuri sopivasti
+vapautunut, joten se on ollut nyt 6 vuotta minulla ja näkyy monessa
+henkilökohtaisessa projektissani yms.
+}
+
 \section{Tuntikirjanpito}
 
 Oheiseen talukkoon on koottu harjoitustehtäviin käytetyt tunnit.
@@ -166,6 +239,7 @@ Oheiseen talukkoon on koottu harjoitustehtäviin käytetyt tunnit.
     Harjoitus 2  & 23.05.2023 & 05:15 & 05:25 &    10m \\
     Harjoitus 3  & 23.05.2023 & 05:25 & 08:05 & 2h 40m \\
     Harjoitus 3  & 24.05.2023 & 06:15 & 06:30 &    15m \\
+    Harjoitus 4  & 24.05.2023 & 06:30 & 08:40 & 2h 10m \\
     \hline
     \multicolumn{4}{l}{\textbf{Yhteensä}} & \textbf{XXh XXm} \\
   \end{tabular*}
