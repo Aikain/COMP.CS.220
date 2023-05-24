@@ -226,6 +226,139 @@ vapautunut, joten se on ollut nyt 6 vuotta minulla ja näkyy monessa
 henkilökohtaisessa projektissani yms.
 }
 
+\section{Harjoitus 5}
+
+Edellinen harjoitus tuli tehtyä javalla, joten tässä harjoituksessa Kotlinin
+vuoro. Tarkoituksena myös käyttää Jetback Composea tässä ja myöhemmissäkin
+vaiheissa sekä projektissa.
+
+Composen tarjoaman esikatselun avulla saadaan nopsaan hahmoteltua laskimen
+perusrivi, kuten kuvassa \ref{fig:exercise-5-row-preview}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/exercise-5-row-preview.png}
+    \caption{Yhden laskurin rivin esikatselu}
+    \label{fig:exercise-5-row-preview}
+\end{figure}
+
+Kun laskuoperaation merkki annetaan Composablelle parametrina, on koko laskimen
+muodostaminen hyvin suoraviivaista UIn puolesta, kuten koodista
+\ref{lst:full-calculator} ja kuvasta \ref{fig:exercise-5-calculator-preview}
+nähdään.
+
+\begin{lstlisting}[
+    basicstyle=\small,
+    label={lst:full-calculator},
+    caption={CalculatorScreen-koodin hahmottelua},
+    language=Kotlin,
+]
+@Composable
+fun CalculatorScreen(
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier = modifier) {
+        CalculatorRow(operator = "+")
+        CalculatorRow(operator = "-")
+        CalculatorRow(operator = "x")
+        CalculatorRow(operator = "/")
+    }
+}
+\end{lstlisting}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/exercise-5-calculator-preview.png}
+    \caption{Oheisen CalculatorScreen-koodin tuottama esikatselu}
+    \label{fig:exercise-5-calculator-preview}
+\end{figure}
+
+Sovellukseen haluttiin toinen näkymä. Yksinkertaisuuden vuoksi lisätään näkymään
+vain normaali painike ja painikkeen alle lista tehdyistä laskutehtävistä. Näkymä
+saadaan nopeasti hahmoteltua ja esikatselua kuvassa
+\ref{fig:exercise-5-history-preview} näkyvästä esikatselusta
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/exercise-5-history-preview.png}
+    \caption{Historianäkymän esikatselu}
+    \label{fig:exercise-5-history-preview}
+\end{figure}
+
+Näkymien oltua karkeasti valmiina, on aika toteuttaa varsinainen
+toiminnallisuus. Laskutoiminnallisuus saadaan yksinkertaisesti lisäämällä
+riveille parametriksi funktio, joka hoitaa laskemisen. Tämän jälkeen riville
+pitää vain toteuttaa Laske-painikkeelle käsittelijä, joka parsii rivillä
+olevien kenttien numerot ja välittää ne parametrina saadulle lasku funktiolle,
+jos numerot ovat kelvollisia. Mikäli numeron parsiminen ei onnistu tai lasku
+funktio palauttaa null:in (vain jos yritetää jakaa nollalla), näytetään
+käyttäjälle "ERROR"-teksti tuloksen sijaan. Jos puolestaan edes toinen kentistä
+on tyhjä niin tyhjennetään tulosteksti.
+
+Numeroiden parsiminen on sinääli haastava tehdä ilman ongelmia jo mm. eri
+välimerkkien takia. Tämän huomaa hyvin kun saa sovelluksen kaatumaan useamman
+kerran kun käyttää pilkkua pisteen sijaan. Try-catch parsimisen ja laskennan
+ympärille ja käyttäjälle näkyviin "ERROR" muissakin virhetilanteissa niin
+estetään sovelluksen kaatuminen. Mahdollisesti käyttämällä NumberFormat tms.
+luokkaa voitaisiin parsiminen hoitaa perustuen Localeen, jolloin pilkut
+voisivat toimia pisteen sijaan, mutta jotta asia pidetään yksinkertaisena,
+käytetään vain valmista toDoubleOrNull-funktiota.
+
+Seuraavaksi olisi laskujen tallentamisen vuoro ja ohjeessa sanotaan, että se
+voidaan toteuttaa tavallisena tiedostoon kirjoituksena eikä tietokantaa
+kannattaisi tähän rakentaa. Jääräpäänä en suostu tietoja tallentamaan
+tiedostoon ellei ole ihan välttämätöntä kun liian monta kertaa törmännyt
+projektiin, jossa on todettu ettei tietokantaa tarvitsisi vaikka oikeasti
+tarvitsee ja joutunut näkemään ylimääräistä vaivaa sen vuoksi. Toki näin
+harjoitustehtävässä, johon kukaan ei tule enää ikinä koskemaan, ei kyseistä
+tilannetta tule tapahtumaan. Kuitenkin tehtävän annoin muotoilu antaa ymmärtää,
+ettei tietokantaa tulisi käyttää sen aiheuttaman ylimääräisen vaivan vuoksi,
+eikä niinkään sen vuoksi, että opettelisi kirjoittamaan tiedostoihin. Siispä
+pitääkseni harjoituksen yksinkertaisena, käytän tietokantaa sen ollessa
+huomattavasti nopeampaa ja yksinkertaisempaa toteuttaa kuin lähteä tutkimaan
+miten tiedostoihin kirjoittaminen/lukeminen tapahtuu.
+
+Tietokannan määrittämisessä toki onnistui pari huolimattomuutta tapahtumaan,
+jonka seurauksena törmäsi käännösvirheeseen, joka johtui puuttuvasti
+riippuvuudesta. Tämän lisäksi unohtui määrittää ID generoitumaan
+automaattisesti, joten käytössä olleella IGNORE-käytönnöllä seurasi se, että
+vain ensimmäinen tallentui tietokantaan. Kannan rakenteen muuttamisen jälkeen
+sovellus kaatui vielä kerran kun unohtui muuttaa kannan versiota. Ilmeentyneet
+ongelmat pieniä ja korjaantuivat kaikki helposti virheen perusteella ilman
+tarkempaa tutkimista.
+
+Hiukan UI:n tyylien säätämisen jälkeen sovellus onkin valmis käytettäväksi.
+Käytettävyyttä saadaan parannettua, kun aktivoidaan numeronäppäimistö kenttiin
+normaalin näppäimistön sijaan. Lisäksi historia näkymään lisätään scrollattava
+lista, joka tukee suuria määriä tuloksia (LazyColumn). Vaihdetaan myös tehtyjen
+laskujen järjestys käänteiseksi eli uusin ylimmäiseksi. Lopullisen sovelluksen
+näkee kuvista \ref{fig:exercise-5-final-1} ja \ref{fig:exercise-5-final-2}.
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}[b]{.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/exercise-5-final-1.png}
+    \caption{Laskin näkymä}
+    \label{fig:exercise-5-final-1}
+\end{minipage}\qquad
+\begin{minipage}[b]{.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/exercise-5-final-2.png}
+    \caption{Historia näkymä}
+    \label{fig:exercise-5-final-2}
+\end{minipage}
+\end{figure}
+
+Parannettavaa löytyy toki yhä tähänkin, mm. voisi käyttää repositoryja eikä
+suoraan kutsua dao:a. Saavutettavuus kaipaisi tässäkin parantamista kuten myös
+testejä. Nämä kaksi puutetta tulevat tosin todennäköisesti jatkuvaan jokaisen
+harjoitustehtävän kohdalla.
+
+Tämän harjoituksen tekemiseen tuli katseltua esimerkkiä Googlen kurssin
+harjoitustehtävistä Inventory App \parencite{GithubGoogleDevTrainingInventory},
+Bus Schedule \parencite{GithubGoogleDevTrainingBusSchedule}, Cupcake
+\parencite{GithubGoogleDevTrainingCupcake} ja Unscramble
+\parencite{GithubGoogleDevTrainingUnscramble}.
+
 \section{Tuntikirjanpito}
 
 Oheiseen talukkoon on koottu harjoitustehtäviin käytetyt tunnit.
@@ -240,6 +373,8 @@ Oheiseen talukkoon on koottu harjoitustehtäviin käytetyt tunnit.
     Harjoitus 3  & 23.05.2023 & 05:25 & 08:05 & 2h 40m \\
     Harjoitus 3  & 24.05.2023 & 06:15 & 06:30 &    15m \\
     Harjoitus 4  & 24.05.2023 & 06:30 & 08:40 & 2h 10m \\
+    Harjoitus 5  & 24.05.2023 & 08:50 & 09:05 &    15m \\
+    Harjoitus 5  & 24.05.2023 & 09:25 & 12:55 & 3h 30m \\
     \hline
     \multicolumn{4}{l}{\textbf{Yhteensä}} & \textbf{XXh XXm} \\
   \end{tabular*}
