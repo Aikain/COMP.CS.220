@@ -359,6 +359,84 @@ Bus Schedule \parencite{GithubGoogleDevTrainingBusSchedule}, Cupcake
 \parencite{GithubGoogleDevTrainingCupcake} ja Unscramble
 \parencite{GithubGoogleDevTrainingUnscramble}.
 
+\section{Harjoitus 6}
+
+Harjoituksen aiheeksi valittu paikan tallentaminen. Tietokantaan määritelty
+neljä kenttää yksilöivän tunnisteen lisäksi kuten koodista
+\ref{lst:location-data-class} on nähtävissä.
+
+\begin{lstlisting}[
+    basicstyle=\small,
+    label={lst:location-data-class},
+    caption={Location data class},
+    language=Kotlin,
+]
+@Entity(tableName = "location")
+data class Location(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+
+    val longitude: Double,
+    val latitude: Double,
+    val timestamp: Long,
+    val notes: String,
+)
+\end{lstlisting}
+
+Koska harjoituksessa painotuksena nimenomaan tietokanta ja sinne tiedon
+tallentaminen, toteutan ensin tietokanta puolen ja vasta sen jälkeen lähden
+hahmottelemenaan käyttöliittymää. Koska tietokanta tuli toteutettua jo
+edellisessä harjoituksessa, menee sen toteuttaminen hyvinkin suoraviivaisesti.
+Kuitenkin vastaan tulee aluksi ongelma, ettei Room tue OffsetDateTime-tyyppiä,
+joten joko pitäisi rakentaa convertteri muuttamaan se sopivampaan muotoon tai
+tyytyä siihen, että tallennetaan ajanhetki UNIX-aikana, poikkeuksena kuitenkin,
+että käytetään millisekunteja sekuntien sijaan.
+
+Tämän jälkeen listanäkymän hahmoittelu tiedoille, kuten esikatselussa
+\ref{fig:exercise-6-location-screen} näkyy. Pari material iconia tietojen
+kanssa niin ulkoasu näyttää merkittävästi paremmalta vaikka onkin hyvin
+pelkistetty ilman tyylittelyä.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/exercise-6-location-screen.png}
+    \caption{Sijaintien listanäkymän esikatselu}
+    \label{fig:exercise-6-location-screen}
+\end{figure}
+
+Haluan erotella tietojen lisäämisen perusnäkymästä, mutta täysin oman näkymän
+tekeminen tuntuu myös vähän "tylsältä" ratkaisulta. Mahdollisesti dialogi tms.
+voisi olla sellainen minkä haluaisin. Pienen Googlailun jälkeen mitä eri
+komponentteja on saatavilla, törmään Material Designissa oleviin Bottom
+Sheetseihin \parencite{MaterialComponentsBottomSheets}, jotka vaikuttavat
+siistiltä ratkaisulta, vaikka niiden tarkoitus onkin ilmeisesti olla hiukan
+enemmän lisätoiminnoille ja -sisällölle kuin niinkään uuden asian lisäämiseksi.
+En ole kuitenkaan koskaan noita käyttänyt, joten aika kokeilla. Nopeahko
+kuvan \ref{fig:exercise-6-location-insert-screen} mukainen hahmotelma
+käyttöliittymälle, jonka jälkeen aika luoda ViewModelit ja yhdistää niiden
+avulla data ja käyttöliittymä.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/exercise-6-location-insert-screen.png}
+    \caption{Sijaintien lisäys lomakkeen esikatselu}
+    \label{fig:exercise-6-location-insert-screen}
+\end{figure}
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \includegraphics[width=0.3\textwidth]{figures/exercise-6-final.png}
+    \caption{Kuvankaappaus lopullisesta sovelluksesta puhelimessa}
+    \label{fig:exercise-6-final}
+\end{wrapfigure}
+
+Hiukan testailua puhelimella niin huomaa kaksi käytettävyyteen parannettavaa
+asiaa: tekstikenttiihin hyvä lisätä labelit, jotka näkyvätkin jo kuvassa
+\ref{fig:exercise-6-location-insert-screen}. Lisäksi tiedon lisäämisen jälkeen
+käyttäjälle mukavampaa, jos vanhat tiedot tyhjennetty kentistä ettei uuden
+tiedon lisäämisessä tarvitse aloittaa kenttien tyhjentämisellä. Muutaman
+sijainnin lisäämisen jälkeen saadaan kuvankaappaus \ref{fig:exercise-6-final}
+tämän harjoiuksen lopullisesta sovelluksesta.
+
 \section{Tuntikirjanpito}
 
 Oheiseen talukkoon on koottu harjoitustehtäviin käytetyt tunnit.
@@ -375,6 +453,8 @@ Oheiseen talukkoon on koottu harjoitustehtäviin käytetyt tunnit.
     Harjoitus 4  & 24.05.2023 & 06:30 & 08:40 & 2h 10m \\
     Harjoitus 5  & 24.05.2023 & 08:50 & 09:05 &    15m \\
     Harjoitus 5  & 24.05.2023 & 09:25 & 12:55 & 3h 30m \\
+    Harjoitus 6  & 24.05.2023 & 16:30 & 19:40 & 3h 10m \\
+    Harjoitus 6  & 24.05.2023 & 06:40 & 08:30 & 1h 50m \\
     \hline
     \multicolumn{4}{l}{\textbf{Yhteensä}} & \textbf{XXh XXm} \\
   \end{tabular*}
