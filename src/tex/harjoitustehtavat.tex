@@ -437,6 +437,40 @@ tiedon lisäämisessä tarvitse aloittaa kenttien tyhjentämisellä. Muutaman
 sijainnin lisäämisen jälkeen saadaan kuvankaappaus \ref{fig:exercise-6-final}
 tämän harjoiuksen lopullisesta sovelluksesta.
 
+\section{Harjoitus 7}
+
+Tämä harjoitus on jatkoa edelliselle harjoitukselle, joten muutokset tehdään
+versionhallintaakin harjoitustehtavat/harjoitus6/ -kansioon. Mikäli haluaa
+tarkistella harjoitus 6 jälkeistä tilannetta, onnistuu se helposti Gitlabin
+web-käyttöliittymässä vaihtamalla main-branchi tagiin ''exercise-06'' kuvan
+\ref{fig:gitlab-change-branch-to-tag}. Vaihtoehtoisesti toki perus checkout
+kyseiseen tagiin toimii, jos tarkastelee koodia omalta koneelta. Vastaavat
+tagit tarkoitus tehdä muillekkin, jotka jatkavat edellistä harjoitusta.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/gitlab-change-branch-to-tag.png}
+    \caption{Gitlabissa koodin näyttäminen tietyn tagin mukaan}
+    \label{fig:gitlab-change-branch-to-tag}
+\end{figure}
+
+Harjoitus 7 olettaa ilmeisesti, että edellisellä harjoituksessa ei olisi
+käytetty Composea vaan tehty perinteisillä View komponenteilla. Lähin vastine
+Composen kanssa lienee se, että teen oman Composablen. Lisäksi harjoituksessa
+ohjeistettu käyttämään RecyclerView-ominaisuutta, jolle hyvä vastine Composen
+puolella on LazyColumn, joka oli jo käytössä.
+
+Varsinaisen koodin muuttamiseen ei mene minuuttia kauempaa, mutta ilmeisesti
+nyt tuli vastaan mahdollisesti ensimmäinen ongelma bind mountin kanssa. Eri
+tiedostojärjestelmät ilmeisesti huomioivat kirjainkoon erilailla. Tämän
+seurauksena onnistuin lisäämään harjoitus6:n versionhallintaan kahdesti. Toinen
+kansio alkoi isolla kirjaimella ja toinen pienellä. Muutokset olin tietysti
+ehtinyt jo pushata ja suoraan main-branchiin, joten historian korjaus ei
+onnistu branchin suojauksen vuoksi. Uutta committia siis perään, jossa
+poistettu duplikaatti. Asiaa toki hiukan hankaloitti se ettei tiedostoissa ne
+näkynyt kahtena vaan ainoastaan git tunnisti ne erillisiksi. Sen tarkmmin
+perehtymättä ongelma korjattu, muutokset tehty uudelleen ja testattu.
+
 \section{Tuntikirjanpito}
 
 Oheiseen talukkoon on koottu harjoitustehtäviin käytetyt tunnit.
@@ -455,6 +489,7 @@ Oheiseen talukkoon on koottu harjoitustehtäviin käytetyt tunnit.
     Harjoitus 5  & 24.05.2023 & 09:25 & 12:55 & 3h 30m \\
     Harjoitus 6  & 24.05.2023 & 16:30 & 19:40 & 3h 10m \\
     Harjoitus 6  & 24.05.2023 & 06:40 & 08:30 & 1h 50m \\
+    Harjoitus 7  & 24.05.2023 & 08:30 & 09:10 &    40m \\
     \hline
     \multicolumn{4}{l}{\textbf{Yhteensä}} & \textbf{XXh XXm} \\
   \end{tabular*}
