@@ -471,6 +471,66 @@ poistettu duplikaatti. Asiaa toki hiukan hankaloitti se ettei tiedostoissa ne
 näkynyt kahtena vaan ainoastaan git tunnisti ne erillisiksi. Sen tarkmmin
 perehtymättä ongelma korjattu, muutokset tehty uudelleen ja testattu.
 
+\section{Harjoitus 8}
+
+Tässä harjoituksessa lisätään mahdollisuus järjestää sijainnin aikaleiman
+mukaan, joko laskevaan tai nousevaan järjestykseen. Järjestys tallennetaan,
+jotta järjestys on seuraavalla sovelluksen käyttökerralla sama eikä nollaannu
+joka kerta kun sovelluksen avaa uudelleen. Toteutetaan lisäksi mahdollisuus
+poistaa tallennettuja sijainteja.
+
+Käyttäjän preferenceistä saadaan tehtyä käytevästi oma repository, ja sen myötä
+ketjujettua Flow peräkkäin. Toki tässä tapauksessa halutaan saada myös
+ensimmäinen tieto UiState:lle, joten sisäkkäin laittaminen auttaa siinä, kuten
+koodissa \ref{lst:chain-flows} on tehty. Esimerkkejä ketjutuksee ja sisäkkäin
+laittamiseen on saatu blogipostista \parencite{KotlinFlowNestingVSChaining}.
+
+\begin{lstlisting}[
+    basicstyle=\small,
+    label={lst:nested-flows},
+    caption={Useamman flown käyttäminen yhdessä},
+    language=Kotlin,
+]
+@OptIn(FlowPreview::class)
+val locationUiState: StateFlow<LocationUiState> =
+    userPreferencesRepository.isAscOrder
+        .flatMapMerge { isAscOrder ->
+            (if (isAscOrder) locationRepository.getAllOrderByTimestampAsc()
+            else locationRepository.getAllOrderByTimestampDesc())
+                .map { locations ->
+                    LocationUiState(locations = locations, isAscOrder = true)
+                }
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
+            initialValue = LocationUiState()
+        )
+\end{lstlisting}
+
+Jotta UI saadaan hiukan ''eloisammaksi'' niin laitetaan järjestyksen
+vaihtopainikkeeseen hiukan animointia niin pääsee niitäkin testaamaan tässä
+samalla. Animaatioiden tekemisen tueksi löytyi hyvä blogi postaus
+\parencite{CardFlipAnimationWithJetpackCompose}.
+
+Emulattorista löytyy kätevä screen recorder, jolla saadaan nauhoitettua
+animaatiota. Videon laittaminen kuitenkin tähän dokumenttiin on jokseenkin
+haastavaa, joten on se saatavilla Oppimispäiväkirja repositoryssa other
+-kansiossa.
+
+Merkittäviä ongelmia järjestämisessä ei tule, kunhan animaatioon laittaa oikean
+luvun eikä vahingossa kymmenkertaista (nollan 180f vs 1800f) niin ei iconi
+kierry liian montaa kertaa X-akselin ympäri. Lisäksi hyvä olla tarkkana
+kopioinnissa ettei jätä molempiin tietokantakyseyihin järjestykseksi DESC, kun
+silloin ei oikein järjestys vaihdu vaikka painike toimiikin.
+
+% TODO: poistaminen
+
+Vaikutteita tähän ja jonkin verran myös harjoituksiin 6 ja 7 se on tullut
+''Now In Android''-esimerkistä \parencite{GithubAndroidNowInAndroid}. Lisäksi
+Prefence DataStoren käyttämiseen käytetty tukena ''Dessert Release App''
+-harjoitusta \parencite{GithubGoogleDevTrainingDessertRelease}.
+
 \section{Tuntikirjanpito}
 
 Oheiseen talukkoon on koottu harjoitustehtäviin käytetyt tunnit.
@@ -490,6 +550,8 @@ Oheiseen talukkoon on koottu harjoitustehtäviin käytetyt tunnit.
     Harjoitus 6  & 24.05.2023 & 16:30 & 19:40 & 3h 10m \\
     Harjoitus 6  & 25.05.2023 & 06:40 & 08:30 & 1h 50m \\
     Harjoitus 7  & 25.05.2023 & 08:30 & 09:10 &    40m \\
+    Harjoitus 8  & 25.05.2023 & 12:35 & 15:30 & 2h 55m \\
+    Harjoitus 8  & 26.05.2023 & 08:30 & 08:45 &    15m \\
     \hline
     \multicolumn{4}{l}{\textbf{Yhteensä}} & \textbf{XXh XXm} \\
   \end{tabular*}
